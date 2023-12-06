@@ -18,12 +18,25 @@
         data-bs-theme="dark"
       >
         <div class="container">
-          <a class="navbar-brand" href="#">Krypto Info</a>
+          <a class="navbar-brand" href="#"
+            ><img
+              style="max-width: 40px"
+              src="imgs/logo.png"
+              class="p-1"
+              alt=""
+            />
+            Krypto Info</a
+          >
         </div>
       </nav>
     </div>
     <main class="container">
-      <form method="get" action="/details" class="mb-5 text-center">
+      <form
+        method="post"
+        action="/"
+        class="mb-5 text-center"
+        autocomplete="off"
+      >
         <label for="exampleDataList" class="form-label"
           >Search for your favourite crypto(s) and get the latest info
           below.</label
@@ -37,46 +50,36 @@
         />
         <datalist id="datalistOptions">
           <% results.forEach((result) => { %>
-          <option value="<%= result %>"></option>
-          <% }) %>
+          <option value=" <%= result  %>"></option>
+          <% })%>
         </datalist>
         <input type="submit" class="btn btn-dark mt-3" />
       </form>
 
-      <% if (locals.details){ %>
+      <% if (locals.name){ %>
 
       <div class="card mb-3 text-bg-light text-center">
         <div class="text-bg-dark">
           <img
-            src="<%= details.logo %>"
+            src="<%= logo %>"
             class="card-img-top text-center p-5"
-            alt="<%= details.name %>"
+            alt="<%=name %>"
             style="max-width: 18rem"
           />
         </div>
         <div class="card-body">
-          <h5 class="card-title">
-            <%= details.name %> (<%= details.symbol %>)
-          </h5>
-          <p class="card-text"><%= details.description %></p>
+          <h5 class="card-title"><%= name %>(<%= symbol %>)</h5>
+          <p class="card-text"><%= description %></p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            Price (in USD): <%= prices.quotes.USD.price %>
-          </li>
-          <li class="list-group-item">
-            Market cap (in USD): <%= prices.quotes.USD.market_cap %>
-          </li>
-          <li class="list-group-item">Rank: <%= prices.rank %></li>
-          <li class="list-group-item">
-            Total Supply: <%= prices.total_supply %>
-          </li>
-          <li class="list-group-item">
-            Maximum supply: <%= prices.max_supply %>
-          </li>
+          <li class="list-group-item">Price (in USD): <%= price %></li>
+          <li class="list-group-item">Market cap (in USD): <%= marketCap %></li>
+          <li class="list-group-item">Rank: <%= rank %></li>
+          <li class="list-group-item">Total Supply: <%= totalSupply %></li>
+          <li class="list-group-item">Maximum supply: <%= maxSupply %></li>
         </ul>
         <div class="card-footer text-body-secondary">
-          Launched: <%= details.first_data_at %>
+          Launched: <%= launched %>
         </div>
       </div>
       <% } %>
